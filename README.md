@@ -13,10 +13,9 @@ WHEN all questions are answered or the timer reaches 0
 THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
-## Design Notes
-Responsive user interface achieved through the use of media queries
 
-Additional questions can be added without affecting functionality
+
+
 
 ## Link to Deployed Application
 
