@@ -15,6 +15,19 @@ function hide(){
     questions.setAttribute("hidden",true);
     startBtn.setAttribute("hidden",true);
 }
+function quizstart(){
+  hide();
+  questions.removeAttribute("class");
+  timer=setInterval(()=>{
+    time.textContent=timerCount;
+    timerCount--;
+  
+  },1000);
+}
+startBtn.addEventListener("click",quizstart);
 
+function retrievequation (){
+
+}
 
 
