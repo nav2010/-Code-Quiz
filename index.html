@@ -10,27 +10,33 @@
   </head>
 
   <body>
-    <div class="scores"><a href="highscores.html">View Highscores</a></div>
+    <!-- clicking on the link below takes us to the highscores page -->
+    <div class="scores"><a href="highscores.html">View Highscores</a></div> 
 
     <div class="timer">Time: <span id="time">0</span></div>
 
     <div class="wrapper">
-      <div id="start-screen" class="start">
+      <div id="start-screen" class="start"> <!-- this class is responsible for showing the div.  -->
         <h1>Coding Quiz Challenge</h1>
         <p>
           Try to answer the following code-related questions within the time
           limit. Keep in mind that incorrect answers will penalize your
           score/time by ten seconds!
         </p>
-        <button id="start">Start Quiz</button>
+        <!-- clicking the button below should trigger some kind of event -->
+        <button id="start">Start Quiz</button> 
       </div>
 
-      <div id="questions" class="hide">
-        <h2 id="question-title"></h2>
-        <div id="choices" class="choices"></div>
+      <div id="questions" class="hide"> <!-- this class is responsible for hiding the div. It can be changed to "start" so that it's visible.  -->
+        <h2 id="question-title">
+          <!-- Title taken from the question object will be displayed here -->
+        </h2>
+        <div id="choices" class="choices">
+          <!-- Choices taken from the question object will be displayed here -->
+        </div>
       </div>
 
-      <div id="end-screen" class="hide">
+      <div id="end-screen" class="hide"> <!-- this class is responsible for hiding the div. It can be changed to "start" so that it's visible.  -->
         <h2>All done!</h2>
         <p>Your final score is <span id="final-score"></span>.</p>
         <p>
@@ -42,7 +48,42 @@
       <div id="feedback" class="feedback hide"></div>
     </div>
 
-    <script src="./assets/js/questions.js"></script>
+    <!-- These are references to files that need to be created -->
+    <script src="./assets/js/questions.js"></script> <!-- will house all of the questions for the game. An array of objects is a good choice -->
     <script src="./assets/js/logic.js"></script>
+    <script src="./assets/js/scores.js"></script>
+
+    
+    <!-- Having these two files linked to this html file makes it possible for questions.js and logic.js to share their contents with one another.  -->
+
+    <!-- 
+          Notes on the js files:
+
+    - Break the code up into functions:
+
+        - Start the quiz (which of the below functions can be called when we start the quiz?)
+
+        - Get Question and display it on the page 
+            - Grabbing the question from the questions array inside of questions.js file. 
+            - These get displayed in the choices div.
+            - What happens when each choice has been clicked?         
+                - Need to display feedback: lets the user know if it was answered correctly or incorrectly. 
+                - Also, need to play a sound effect if it is right or wrong. There is a folder with two different sound effects inside. 
+                The Audio needs to be imported into logic.js:                  
+                var sfxRight = new Audio("assets/sfx/correct.wav");
+                var sfxWrong = new Audio("assets/sfx/incorrect.wav");
+                
+                Example of how to call:
+                sfxWrong.play();
+                - If the user answers incorrectly then time is taken off of the timer
+        
+        - End the Quiz
+          - what needs to happen here? 
+            - Display high scores
+            - Stop the timer
+    
+        - function to handle saving the high score
+          - make sure to add the final score to local storage
+     -->
   </body>
 </html>
