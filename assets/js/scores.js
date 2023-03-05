@@ -1,30 +1,32 @@
-function printHighscores() {
+let clearBtn =document.querySelector("#clear")
+function printHighScores() {
     // either get scores from localstorage or set to empty array
-    var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+    var scores = JSON.parse(window.localStorage.getItem('highscores')) || [];
   
     // sort highscores by score property in descending order
-    highscores.sort(function (a, b) {
+    scores.sort(function (a, b) {
       return b.score - a.score;
-    });
+    })
   
-    for (var i = 0; i < highscores.length; i += 1) {
+    scores.forEach(function(newScore){
+        
+    
       // create li tag for each high score
-      var liTag = document.createElement('li');
-      liTag.textContent = highscores[i].initials + ' - ' + highscores[i].score;
+      let liEl = document.createElement('li');
+      liEl.textContent = newScore.initials + " -- " + newScore.score
   
       // display on page
-      var olList = document.getElementById('highscores');
-      olList.appendChild(liTag);
+      var olEl = document.getElementById('highscores');
+      olEl.appendChild(liEl);
       
-    }
-  }
+    });
   
+}
+printHighScores(); 
   function clearHighscores() {
-    window.localStorage.removeItem('highscores');
-    window.location.reload();
+    localStorage.removeItem('highscores');
+    location.reload();
   }
   
-  document.querySelector('#clear').onclick = clearHighscores;
-  
-  // run function when page loads
-  printHighscores();
+clearBtn.addEventListener("click",clearHighscores)  
+ 

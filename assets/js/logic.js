@@ -9,6 +9,8 @@ var submitBtn = document.querySelector('#submit');
 var startBtn = document.querySelector('#start');
 var feedbackEl = document.querySelector('#feedback');
 var initialsEl = document.querySelector('#initials');
+var endscreenEl=document.querySelector("#end-screen");
+var finalscore=document.querySelector("#final-score");
 function startQuiz() {
   // invisible start screen
   var startScreenEl = document.getElementById('start-screen');
@@ -23,13 +25,14 @@ function startQuiz() {
 }
 function getQuestion() {
   //  question object from array
-  var currentQuestion = questions[0];
+  var currentQuestion = questions[currentQuestionIndex];
   // update title
   var titleEl = document.getElementById('question-title');
   titleEl.textContent = currentQuestion.title;
   // clean out old question
   choicesEl.innerHTML = '';
   for (var i = 0; i < currentQuestion.choices.length; i++) {
+    
     // create new button for each choice
     var choice = currentQuestion.choices[i];
     var choiceNode = document.createElement('button');
@@ -37,17 +40,18 @@ function getQuestion() {
     choiceNode.setAttribute('value', choice);
     choiceNode.textContent = i + 1 + '. ' + choice;
     // show on the page
-    choicesEl.appendChild(choiceNode);
+    choicesEl.appendChild(choiceNode); 
   }
 }
 function questionClick(event) {
   var buttonEl = event.target;
   // do nothing if the clicked element is not a choice button.
   if (!buttonEl.matches('.choice')) {
-    return;
+    return ;
   }
   // select if user guessed wrong
-  if (buttonEl.value !== questions[currentQuestionIndex].answer) {
+  console.log(buttonEl.value , questions[currentQuestionIndex].answer)
+  if (buttonEl.value!== questions[currentQuestionIndex].answer) {
     // reduce time for wrong answers.
     time -= 10;
     if (time < 0) {
@@ -67,29 +71,27 @@ function questionClick(event) {
   // move to next question
   currentQuestionIndex++;
   // check if we've run out of questions
-  if (time <= 0 || currentQuestionIndex === questions.length) {
+  if (time <= 0 || currentQuestionIndex >= questions.length) {
     quizEnd();
   } else {
     getQuestion();
   }
 }
 function quizEnd() {
-  clearInterval(timerId);
-  // show end screen
-  var endScreenEl = document.getElementById('end-screen');
-  endScreenEl.removeAttribute('class');
-  // show final score
-  var finalScoreEl = document.getElementById('final-score');
-  finalScoreEl.textContent = time;
-  // hide questions section
-  questionsEl.setAttribute('class', 'hide');
+ clearInterval(timerId);
+ endscreenEl.classList.remove('hide');
+ finalscore.textContent=time;
+ questionsEl.classList.add("hide");
+
 }
+
 function clockTick() {
   // update time
   time--;
   timerEl.textContent = time;
   // check if user ran out of time
-  if (time <= 0) {
+  if (time <= 0) 
+  {
     quizEnd();
   }
 }
@@ -123,6 +125,7 @@ function checkForEnter(event) {
 submitBtn.onclick = saveHighscore;
 // user clicks button to start quiz
 startBtn.onclick = startQuiz;
+
 // user clicks on element containing choices
 choicesEl.onclick = questionClick;
 initialsEl.onkeyup = checkForEnter;  
