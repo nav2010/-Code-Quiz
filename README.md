@@ -21,7 +21,7 @@ GIVEN I am taking a code quiz
 
 https://nav2010.github.io/-Code-Quiz/index.html
 
-## screenshot of Deployed Application
+## Screenshot of Deployed Application
 
 ![Screenshot](/assets/images/page1.png)
 
