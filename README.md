@@ -23,6 +23,8 @@ https://nav2010.github.io/-Code-Quiz/index.html
 
 ## screenshot of Deployed Application
 
+![Screenshot](/assets/images/page1.png)
+
 ## Video of Deployed Application
 
 ![Watch the video](/assets/images/final.gif)
