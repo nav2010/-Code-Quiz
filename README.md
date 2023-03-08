@@ -21,8 +21,8 @@ GIVEN I am taking a code quiz
 
 https://nav2010.github.io/-Code-Quiz/index.html
 
+## screenshot of Deployed Application
 
+## Video of Deployed Application
 
-## Screenshot of Deployed Application
-
-[![Watch the video](/assets/images/page1.png)](/assets/images/final.gif)
+![Watch the video](/assets/images/final.gif)
